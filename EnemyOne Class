@@ -1,0 +1,30 @@
+package game;
+
+import java.awt.Graphics;
+
+public class EnemyOne extends Entity
+{
+	Polygon poly;
+	public EnemyOne(Polygon poly, int Health)
+	{
+		super(poly, Health);
+		this.poly = poly;
+	}
+	
+	@Override
+	public void draw(Graphics brush)
+	{
+		DrawingTools.DrawPolygon(brush, poly);
+	}
+	
+	@Override
+	public boolean damage(double damage)//changed return type in Entity class
+	{
+		double newHealth = super.getHealth()-damage;
+		if(newHealth <= 0)
+		{
+			return true;
+		}
+		return false;
+	}
+}
